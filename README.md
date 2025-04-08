@@ -1,0 +1,1 @@
+# faang-stock-data-pipeline
