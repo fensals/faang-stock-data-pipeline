@@ -1,0 +1,11 @@
+
+services:
+  data-pipeline:
+    build: .
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/service-account-key.json  # Set Google Cloud credentials file path
+    volumes:
+      - ./keys.json:/app/service-account-key.json  # Mount your service account key to the container
+    ports:
+      - "8080:8080"  # Expose ports if needed
+
