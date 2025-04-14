@@ -1,0 +1,21 @@
+# Use the official Apache Airflow base image
+FROM apache/airflow:2.6.1
+
+# Switch to root user to install dependencies
+USER root
+
+# Create a directory for dbt projects (optional if you'll mount it later)
+# RUN mkdir -p /opt/dbt
+
+# Switch back to the airflow user
+USER airflow
+
+# Install dbt and Google Cloud dependencies
+RUN pip install --no-cache-dir \
+    dbt-core==1.5.0 \
+    dbt-bigquery==1.5.0 \
+    google-cloud-storage \
+    google-cloud-bigquery \
+    pyarrow
+
+

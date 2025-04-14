@@ -1,0 +1,21 @@
+
+name: 'faang_stock_project'
+version: '1.0.0'
+
+profile: 'bigquery'
+
+
+# Paths where dbt can find models, seeds, snapshots, etc.
+model-paths: ["models"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+analysis-paths: ["analysis"]
+target-path: "target"
+clean-targets: ["target", "dbt_modules"]
+
+models:
+  faang_stock_project:
+    materialized: table  # Default materialization for all models in the project
+
+on-run-start: []
+on-run-end: []

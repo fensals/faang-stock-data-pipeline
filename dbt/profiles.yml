@@ -1,0 +1,12 @@
+
+
+bigquery:
+  outputs:
+    default:
+      type: bigquery
+      method: service-account
+      project: faang-stock-pipeline
+      dataset: faang_stock_dataset
+      keyfile: /opt/dbt/keys.json
+      threads: 4
+  target: default

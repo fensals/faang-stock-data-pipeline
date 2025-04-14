@@ -1,0 +1,26 @@
+
+# Ignore service account key
+keys.json
+
+# Ignore Terraform local state and workspace files
+terraform/.terraform
+terraform/*.tfstate
+terraform/*.tfstate.backup
+
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+
+# Ignore virtual environments
+venv/
+.env/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore log files
+*.log
+
+/airflow/logs/
+
+

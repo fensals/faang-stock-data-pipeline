@@ -1,0 +1,162 @@
+version: 2
+
+models:
+  - name: facebook_model
+    description: "Processes stock data for Facebook, including historical prices and trading volume."
+    columns:
+      - name: Date
+        description: "The date of the stock data."
+        tests:
+          - not_null
+      - name: Open
+        description: "The stock's opening price."
+        tests:
+          - not_null
+      - name: High
+        description: "The stock's highest price during the trading period."
+        tests:
+          - not_null
+      - name: Low
+        description: "The stock's lowest price during the trading period."
+        tests:
+          - not_null
+      - name: Close
+        description: "The stock's closing price."
+        tests:
+          - not_null
+      - name: Adj Close
+        description: "The closing price adjusted for splits and dividends."
+        tests:
+          - not_null
+      - name: Volume
+        description: "The total trading volume for the period."
+        tests:
+          - not_null
+
+  - name: amazon_model
+    description: "Processes stock data for Amazon, including historical prices and trading volume."
+    columns:
+      - name: Date
+        description: "The date of the stock data."
+        tests:
+          - not_null
+      - name: Open
+        description: "The stock's opening price."
+        tests:
+          - not_null
+      - name: High
+        description: "The stock's highest price during the trading period."
+        tests:
+          - not_null
+      - name: Low
+        description: "The stock's lowest price during the trading period."
+        tests:
+          - not_null
+      - name: Close
+        description: "The stock's closing price."
+        tests:
+          - not_null
+      - name: Adj Close
+        description: "The closing price adjusted for splits and dividends."
+        tests:
+          - not_null
+      - name: Volume
+        description: "The total trading volume for the period."
+        tests:
+          - not_null
+
+  - name: apple_model
+    description: "Processes stock data for Apple, including historical prices and trading volume."
+    columns:
+      - name: Date
+        description: "The date of the stock data."
+        tests:
+          - not_null
+      - name: Open
+        description: "The stock's opening price."
+        tests:
+          - not_null
+      - name: High
+        description: "The stock's highest price during the trading period."
+        tests:
+          - not_null
+      - name: Low
+        description: "The stock's lowest price during the trading period."
+        tests:
+          - not_null
+      - name: Close
+        description: "The stock's closing price."
+        tests:
+          - not_null
+      - name: Adj Close
+        description: "The closing price adjusted for splits and dividends."
+        tests:
+          - not_null
+      - name: Volume
+        description: "The total trading volume for the period."
+        tests:
+          - not_null
+
+  - name: netflix_model
+    description: "Processes stock data for Netflix, including historical prices and trading volume."
+    columns:
+      - name: Date
+        description: "The date of the stock data."
+        tests:
+          - not_null
+      - name: Open
+        description: "The stock's opening price."
+        tests:
+          - not_null
+      - name: High
+        description: "The stock's highest price during the trading period."
+        tests:
+          - not_null
+      - name: Low
+        description: "The stock's lowest price during the trading period."
+        tests:
+          - not_null
+      - name: Close
+        description: "The stock's closing price."
+        tests:
+          - not_null
+      - name: Adj Close
+        description: "The closing price adjusted for splits and dividends."
+        tests:
+          - not_null
+      - name: Volume
+        description: "The total trading volume for the period."
+        tests:
+          - not_null
+
+  - name: google_model
+    description: "Processes stock data for Google, including historical prices and trading volume."
+    columns:
+      - name: Date
+        description: "The date of the stock data."
+        tests:
+          - not_null
+      - name: Open
+        description: "The stock's opening price."
+        tests:
+          - not_null
+      - name: High
+        description: "The stock's highest price during the trading period."
+        tests:
+          - not_null
+      - name: Low
+        description: "The stock's lowest price during the trading period."
+        tests:
+          - not_null
+      - name: Close
+        description: "The stock's closing price."
+        tests:
+          - not_null
+      - name: Adj Close
+        description: "The closing price adjusted for splits and dividends."
+        tests:
+          - not_null
+      - name: Volume
+        description: "The total trading volume for the period."
+        tests:
+          - not_null

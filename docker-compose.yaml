@@ -1,0 +1,87 @@
+# version: '3.9'
+
+services:
+  #Initialize Airflow database
+  airflow-init:
+    build:
+      context: .
+      dockerfile: Dockerfile-airflow # Specify the Airflow Dockerfile
+    container_name: airflow-init
+    entrypoint: "airflow db init"
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+    volumes:
+      - ./airflow:/opt/airflow
+    networks:
+      - airflow_net
+
+  # Airflow Webserver Service
+  airflow-webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile-airflow # Specify the Airflow Dockerfile
+    container_name: airflow-webserver
+    restart: always
+    ports:
+      - "8081:8080"
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/keys.json
+    volumes:
+      - ./dbt:/opt/dbt
+      - ./airflow:/opt/airflow
+      - ./keys.json:/opt/airflow/keys.json
+    networks:
+      - airflow_net
+    command: "webserver"
+
+  # Airflow Scheduler Service
+  airflow-scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile-airflow # Specify the Airflow Dockerfile
+    container_name: airflow-scheduler
+    restart: always
+    depends_on:
+      - airflow-webserver
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/keys.json
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+    volumes:
+      - ./dbt:/opt/dbt
+      - ./airflow:/opt/airflow
+      - ./keys.json:/opt/airflow/keys.json
+    networks:
+      - airflow_net
+    command: "scheduler"
+
+  # dbt Runner Service
+  dbt-runner:
+    build:
+
+      context: ./dbt
+      dockerfile: Dockerfile-dbt # Specify the dbt Dockerfile
+    container_name: dbt-runner
+    restart: always
+    volumes:
+      - ./dbt:/opt/dbt
+      - ./keys.json:/opt/dbt/keys.json
+      - ./download_upload_load.py:/opt/dbt/download_upload_load.py 
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /opt/dbt/keys.json
+    networks:
+      - airflow_net
+    #command: /bin/bash -c "cd /opt/dbt && dbt run" 
+    command: /bin/bash -c "python /opt/dbt/download_upload_load.py && cd /opt/dbt && dbt run"
+
+
+networks:
+  airflow_net:
+    driver: bridge
+
+
+    

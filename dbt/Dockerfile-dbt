@@ -1,0 +1,22 @@
+
+FROM python:3.9-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    libssl-dev \
+    libffi-dev \
+    build-essential \
+    && apt-get clean
+
+
+# Set working directory
+WORKDIR /opt/dbt
+
+# Copy requirements file and install dependencies
+COPY requirements.txt /requirements.txt
+RUN pip install --no-cache-dir -r /requirements.txt
+
+# Copy the dbt project files into the container
+COPY . /opt/dbt
+

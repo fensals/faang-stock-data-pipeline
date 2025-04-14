@@ -1,0 +1,5 @@
+dbt-core==1.5.0
+dbt-bigquery==1.5.0
+google-cloud-storage
+google-cloud-bigquery
+kagglehub
