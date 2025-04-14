@@ -42,7 +42,7 @@ The pipeline is batch-based and executes the following steps:
 - Data Transformation:- dbt models transform raw data into structured tables with calculated metrics such as daily_average_price and total stock volume
 - Optimizations like table partitioning and clustering are implemented.
 
-- Dashboarding:- Looker Studio was used to vizualize the data.
+- Dashboarding:- Looker Studio was used to visualize the data.
 
 
 
@@ -63,7 +63,7 @@ The final dashboard contains:
 
   ![Dashboard](https://raw.githubusercontent.com/fensals/FAANG-STOCK-DATA-PIPELINE/refs/heads/master/dashboard/viz.png)
 
-Access the dashboard [here](https://www.kaggle.com/datasets/aayushmishra1512/faang-complete-stock-data)
+Access the dashboard [here](https://lookerstudio.google.com/reporting/bd538abc-0f63-46c1-83a3-8ef9a2662f93)
 
 Setup Instructions
 Follow these steps to reproduce the pipeline:
