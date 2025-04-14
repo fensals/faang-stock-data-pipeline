@@ -17,19 +17,22 @@ for filename in os.listdir(dataset):
     if os.path.isfile(file_path):
         blob = bucket.blob(f"faang-stock-data/{filename}")  # GCS path where the files will be stored
         blob.upload_from_filename(file_path)
+
         print(f"Dataset uploaded to GCS: gs://{bucket_name}/faang_stock_dataset/{filename}")
+
 
 # Step 3: Load data into BigQuery
 client_bq = bigquery.Client()
 dataset_id = "faang_stock_dataset"  # BigQuery dataset
-#table_id_prefix = "faang_stock_dataset_"  # Prefix for the table names
 
 # Loop over the files again and load them into BigQuery
 for filename in os.listdir(dataset):
     file_path = os.path.join(dataset, filename)
     if os.path.isfile(file_path):
         gcs_uri = f"gs://{bucket_name}/faang-stock-data/{filename}"
+
         table_id = f"{filename.split('.')[0]}"  # Create a table for each CSV file
+
 
         job_config = bigquery.LoadJobConfig(
             source_format=bigquery.SourceFormat.CSV,
